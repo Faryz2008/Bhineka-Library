@@ -52,8 +52,10 @@
                                 <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalEdit{{ $b->id_buku }}">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                <form action="{{ route('buku.destroy', $b) }}" method="POST" class="d-inline"
-                                      onsubmit="return confirm('Hapus buku ini?')">
+                                                               <form action="{{ route('buku.destroy', $b) }}" method="POST" class="d-inline"
+                                      data-confirm-title="Hapus buku?"
+                                      data-confirm="Data yang dihapus tidak bisa dikembalikan."
+                                      data-confirm-type="danger">
                                     @csrf @method('DELETE')
                                     <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                                 </form>

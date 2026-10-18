@@ -88,3 +88,7 @@ body { font-family: 'Poppins', sans-serif; font-size: .9rem; background: var(--b
   .content { padding: 1rem; }
   .topbar { padding: .7rem 1rem; }
 }
+
+.confirm-icon { width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; margin: 0 auto 1rem;
+  font-size: 1.6rem; background: var(--blue-100); color: var(--blue-600); }
+.confirm-icon.danger { background: #fdecec; color: #c62f2f; }

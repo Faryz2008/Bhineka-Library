@@ -10,7 +10,9 @@
     <a href="{{ route('pengembalian.index') }}" class="btn btn-light"><i class="bi bi-arrow-left me-1"></i> Kembali</a>
 </div>
 
-<form method="POST" action="{{ route('pengembalian.store', $peminjaman) }}">
+<form method="POST" action="{{ route('pengembalian.store', $peminjaman) }}"
+      data-confirm-title="Simpan pengembalian?"
+      data-confirm="Stok buku akan diperbarui dan denda (jika ada) akan dicatat.">
     @csrf
     <div class="row g-4">
         <div class="col-lg-4">
@@ -81,7 +83,7 @@
             </div>
 
             <div class="text-end mt-3">
-                <button class="btn btn-primary px-4" onclick="return confirm('Simpan pengembalian ini?')">
+                <button class="btn btn-primary px-4">
                     <i class="bi bi-check2-circle me-1"></i> Simpan Pengembalian
                 </button>
             </div>

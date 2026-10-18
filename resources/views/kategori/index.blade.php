@@ -39,8 +39,10 @@
                                 <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalEdit{{ $k->id_kategori }}">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                <form action="{{ route('kategori.destroy', $k) }}" method="POST" class="d-inline"
-                                      onsubmit="return confirm('Hapus kategori ini?')">
+                                                               <form action="{{ route('kategori.destroy', $k) }}" method="POST" class="d-inline"
+                                      data-confirm-title="Hapus kategori?"
+                                      data-confirm="Data yang dihapus tidak bisa dikembalikan."
+                                      data-confirm-type="danger">
                                     @csrf @method('DELETE')
                                     <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                                 </form>

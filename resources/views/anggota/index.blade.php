@@ -53,7 +53,9 @@
                                     <i class="bi bi-pencil"></i>
                                 </button>
                                 <form action="{{ route('anggota.destroy', $a) }}" method="POST" class="d-inline"
-                                      onsubmit="return confirm('Hapus anggota ini?')">
+                                      data-confirm-title="Hapus anggota?"
+                                      data-confirm="Data yang dihapus tidak bisa dikembalikan."
+                                      data-confirm-type="danger">
                                     @csrf @method('DELETE')
                                     <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
                                 </form>

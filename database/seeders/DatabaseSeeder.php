@@ -12,8 +12,8 @@ class DatabaseSeeder extends Seeder
     {
         User::create([
             'nama' => 'Administrator',
-            'username' => 'admin',
-            'password' => 'admin123',
+            'username' => 'bhinneka',
+            'password' => 'bhinneka123',
         ]);
 
         foreach (['Fiksi', 'Non-Fiksi', 'Pelajaran', 'Referensi'] as $nama) {

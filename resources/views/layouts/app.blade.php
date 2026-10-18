@@ -79,11 +79,56 @@
     </section>
 </div>
 
+<div class="modal fade" id="confirmModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-body text-center p-4">
+                <div class="confirm-icon" id="confirmIcon"><i class="bi bi-question-circle"></i></div>
+                <h6 class="fw-semibold mb-1" id="confirmTitle">Konfirmasi</h6>
+                <p class="text-muted mb-4" id="confirmText"></p>
+                <div class="d-flex gap-2 justify-content-center">
+                    <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary px-4" id="confirmOk">Ya, lanjut</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     const sidebar = document.getElementById('sidebar');
     document.getElementById('toggleSidebar')?.addEventListener('click', () => sidebar.classList.toggle('show'));
     document.querySelector('.content').addEventListener('click', () => sidebar.classList.remove('show'));
+
+    // modal konfirmasi: aktif untuk form yang punya atribut data-confirm
+    const confirmModal = new bootstrap.Modal(document.getElementById('confirmModal'));
+    let pendingForm = null;
+
+    document.addEventListener('submit', e => {
+        const form = e.target;
+        if (!form.dataset.confirm) return;
+        e.preventDefault();
+        pendingForm = form;
+
+        const danger = form.dataset.confirmType === 'danger';
+        document.getElementById('confirmTitle').textContent = form.dataset.confirmTitle || 'Konfirmasi';
+        document.getElementById('confirmText').textContent = form.dataset.confirm;
+
+        const icon = document.getElementById('confirmIcon');
+        icon.className = 'confirm-icon' + (danger ? ' danger' : '');
+        icon.innerHTML = danger ? '<i class="bi bi-trash"></i>' : '<i class="bi bi-question-circle"></i>';
+
+        const ok = document.getElementById('confirmOk');
+        ok.className = 'btn px-4 ' + (danger ? 'btn-danger' : 'btn-primary');
+        ok.textContent = danger ? 'Ya, hapus' : 'Ya, simpan';
+
+        confirmModal.show();
+    });
+
+    document.getElementById('confirmOk').addEventListener('click', () => {
+        if (pendingForm) pendingForm.submit();
+    });
 </script>
 @stack('scripts')
 </body>
